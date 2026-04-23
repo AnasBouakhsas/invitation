@@ -296,7 +296,6 @@
   function toggleJsp() {
     var btn = document.getElementById('btnJsp');
     var input = document.getElementById('lieu');
-
     if (btn.classList.contains('active')) {
       btn.classList.remove('active');
       input.value = '';
@@ -311,65 +310,38 @@
   function envoyer(rep) {
     var date = document.getElementById('date').value;
     var erreur = document.getElementById('dateError');
-
     if (!date) {
       erreur.style.display = 'block';
       document.getElementById('date').focus();
       return;
     }
-
     erreur.style.display = 'none';
     document.getElementById('reponse').value = rep;
-
     var form = document.getElementById('inviteForm');
-
     fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
-    });
-
-    if (rep === 'Pas interessee') {
-      afficherRefus();
-    } else {
-      afficherMerci(rep);
-    }
-  }
-
-  function afficherRefus() {
-    var titre = document.getElementById('merciTitre');
-    var texte = document.getElementById('merciTexte');
-    var section = document.getElementById('merciSection');
-
-    titre.textContent = "Ah bon ? 😅";
-    texte.innerHTML = "Non... c'est obligatoire qu'on déjeune ensemble 😄";
-
-    section.style.display = 'block';
-
-    // IMPORTANT : on garde le formulaire visible
-    document.getElementById('formBody').style.opacity = '1';
+    }).finally(function() { afficherMerci(rep); });
   }
 
   function afficherMerci(rep) {
     var body = document.getElementById('formBody');
-
     body.style.opacity = '0';
-
     setTimeout(function() {
       body.style.display = 'none';
-
       var titre = document.getElementById('merciTitre');
       var texte = document.getElementById('merciTexte');
-
       if (rep === 'Oui') {
         titre.textContent = 'Super.';
         texte.innerHTML = 'Je suis ravi de ta reponse.<br>On se retrouve tres bientot.';
-      } 
-      else if (rep === 'Peut-etre') {
+      } else if (rep === 'Peut-etre') {
         titre.textContent = "D'accord.";
         texte.innerHTML = 'Pas de pression.<br>On en reparlera bientot.';
+      } else {
+        titre.textContent = 'Compris.';
+        texte.innerHTML = 'Merci pour ta reponse.';
       }
-
       document.getElementById('merciSection').style.display = 'block';
     }, 350);
   }
