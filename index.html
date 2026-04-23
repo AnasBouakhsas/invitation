@@ -3,340 +3,300 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Une invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <title>Invitation pour dejeuner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #faf6f0;
-      --warm: #f0e8d8;
-      --terracotta: #c0714f;
-      --dark: #1e1a16;
-      --muted: #8a7f74;
-      --border: #ddd3c3;
+      --white: #ffffff;
+      --black: #111111;
+      --gray: #666666;
+      --light: #f5f5f5;
+      --border: #e0e0e0;
+      --red: #d0281e;
     }
 
     body {
-      background-color: var(--cream);
-      color: var(--dark);
-      font-family: 'DM Sans', sans-serif;
+      background-color: var(--light);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
-      overflow-x: hidden;
-    }
-
-    /* Decorative background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -40%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #e8d5c0 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    body::after {
-      content: '';
-      position: fixed;
-      bottom: -30%;
-      left: -15%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #d4c5b0 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
     }
 
     .card {
-      position: relative;
-      z-index: 1;
-      background: white;
+      background: var(--white);
       border: 1px solid var(--border);
-      max-width: 480px;
+      max-width: 450px;
       width: 100%;
       padding: 3rem 2.5rem;
-      box-shadow: 0 2px 40px rgba(0,0,0,0.06);
-      animation: fadeUp 0.9s ease both;
+      animation: fadeUp 0.7s ease both;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .top-line {
-      width: 40px;
-      height: 2px;
-      background: var(--terracotta);
-      margin-bottom: 2rem;
+    .top-accent {
+      width: 100%;
+      height: 3px;
+      background: var(--black);
+      margin-bottom: 2.5rem;
+      position: relative;
     }
 
-    .label-small {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
+    .top-accent::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
+      color: var(--gray);
+      margin-bottom: 0.8rem;
     }
 
     h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 300;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
       line-height: 1.2;
-      color: var(--dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      color: var(--black);
     }
 
     h1 em {
       font-style: italic;
-      color: var(--terracotta);
+      color: var(--red);
     }
 
     .subtitle {
-      font-size: 0.88rem;
-      color: var(--muted);
+      font-size: 0.85rem;
+      color: var(--gray);
       font-weight: 300;
+      line-height: 1.7;
       margin-bottom: 2.5rem;
-      line-height: 1.6;
     }
 
-    .divider {
+    hr {
       border: none;
       border-top: 1px solid var(--border);
       margin: 2rem 0;
     }
 
-    .field {
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.9s ease both;
-    }
-    .field:nth-child(1) { animation-delay: 0.1s; }
-    .field:nth-child(2) { animation-delay: 0.2s; }
-    .field:nth-child(3) { animation-delay: 0.3s; }
+    .field { margin-bottom: 1.6rem; }
 
     .field label {
       display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
     }
 
-    .field label span.required {
-      color: var(--terracotta);
-      margin-left: 2px;
-    }
+    .field label .req { color: var(--red); margin-left: 2px; }
 
-    .field input {
+    .field input[type="text"],
+    .field input[type="date"] {
       width: 100%;
       border: none;
       border-bottom: 1.5px solid var(--border);
-      padding: 0.6rem 0;
-      font-size: 0.95rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--dark);
+      padding: 0.55rem 0;
+      font-size: 0.92rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: var(--black);
       background: transparent;
       outline: none;
-      transition: border-color 0.25s;
+      transition: border-color 0.2s;
     }
 
-    .field input::placeholder { color: #c5bbb0; }
-    .field input:focus { border-bottom-color: var(--terracotta); }
+    .field input::placeholder { color: #bbb; }
+    .field input:focus { border-bottom-color: var(--black); }
 
-    .field input[type="date"] {
-      cursor: pointer;
-    }
-
-    .checkbox-group {
-      margin-bottom: 2rem;
-    }
-
-    .checkbox-group label.group-label {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .choice-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      border: 1.5px solid var(--border);
+    .btn-jsp {
+      margin-top: 0.7rem;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.78rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      border: 1px solid var(--border);
       background: white;
-      color: var(--dark);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
+      color: var(--gray);
       cursor: pointer;
       transition: all 0.2s;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
     }
 
-    .choice-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
-    .choice-btn.active {
-      background: var(--terracotta);
-      border-color: var(--terracotta);
-      color: white;
+    .btn-jsp:hover { border-color: var(--black); color: var(--black); }
+    .btn-jsp.active { background: var(--black); border-color: var(--black); color: white; }
+
+    .error {
+      font-size: 0.73rem;
+      color: var(--red);
+      margin-top: 0.4rem;
+      display: none;
     }
 
     .actions {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.65rem;
       margin-top: 2rem;
-      animation: fadeUp 0.9s ease 0.4s both;
     }
 
-    .btn-primary {
-      background: var(--terracotta);
+    .btn-oui {
+      background: var(--black);
       color: white;
       border: none;
-      padding: 0.9rem 1.5rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
+      padding: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-    .btn-primary:hover { background: #a85e3e; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
+    .btn-oui::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 2px;
+      background: var(--red);
+    }
+    .btn-oui:hover { background: #222; }
 
-    .btn-maybe {
-      background: transparent;
-      color: var(--dark);
-      border: 1.5px solid var(--border);
-      padding: 0.85rem 1.5rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
+    .btn-peut {
+      background: white;
+      color: var(--black);
+      border: 1px solid var(--black);
+      padding: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: border-color 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
-    .btn-maybe:hover { border-color: var(--dark); }
+    .btn-peut:hover { background: var(--black); color: white; }
 
-    .btn-decline {
+    .btn-non {
       background: transparent;
-      color: var(--muted);
       border: none;
-      padding: 0.5rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
+      padding: 0.3rem;
+      text-align: center;
       transition: color 0.2s;
-      text-align: center;
     }
-    .btn-decline:hover { color: var(--dark); }
+    .btn-non:hover { color: var(--gray); }
 
-    .error-msg {
-      font-size: 0.78rem;
-      color: var(--terracotta);
-      margin-top: 0.4rem;
-      display: none;
-    }
-
-    /* Thank you screen */
-    .thankyou {
+    .merci {
       display: none;
       text-align: center;
-      padding: 1rem 0;
-      animation: fadeUp 0.7s ease both;
+      padding: 2rem 0;
+      animation: fadeUp 0.6s ease both;
     }
 
-    .thankyou .icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+    .merci-accent {
+      width: 40px;
+      height: 3px;
+      background: var(--red);
+      margin: 0 auto 2rem;
     }
 
-    .thankyou h2 {
-      font-family: 'Cormorant Garamond', serif;
+    .merci h2 {
+      font-family: 'Playfair Display', serif;
       font-size: 2rem;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 0.75rem;
+      color: var(--black);
     }
 
-    .thankyou p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
+    .merci p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.8;
+      font-weight: 300;
     }
 
-    .form-section { transition: opacity 0.4s; }
+    .form-body { transition: opacity 0.35s; }
   </style>
 </head>
 <body>
-
 <div class="card">
 
-  <!-- FORM SECTION -->
-  <div class="form-section" id="formSection">
-    <div class="top-line"></div>
-    <p class="label-small">Une invitation</p>
-    <h1>Déjeuner à <em>deux ?</em></h1>
-    <p class="subtitle">J'aimerais t'inviter à partager un repas.<br>Quelques petites questions avant tout…</p>
+  <div class="form-body" id="formBody">
+    <div class="top-accent"></div>
+    <p class="eyebrow">Invitation pour dejeuner</p>
+    <h1>Dejeuner a <em>deux ?</em></h1>
+    <p class="subtitle">J'aimerais t'inviter.<br>Mais 9bel, khattek tjawbi </p>
 
-    <hr class="divider"/>
+    <hr />
 
     <form id="inviteForm" action="https://formspree.io/f/mkokqaql" method="POST">
 
-      <!-- Lieu -->
       <div class="field">
-        <label for="lieu">Où aimerais-tu aller ?</label>
-        <input type="text" id="lieu" name="lieu" placeholder="Un restaurant, un quartier… ou laisse-moi choisir" />
-        <div style="margin-top:0.6rem;">
-          <button type="button" class="choice-btn" id="btn-jsp" onclick="setSavoirPas()">Je ne sais pas 🤷‍♀️</button>
+        <label>Fine tebghi nemchiw ?</label>
+        <input type="text" id="lieu" name="lieu" placeholder="chi blassa !!" />
+        <div style="margin-top: 0.6rem;">
+          <button type="button" class="btn-jsp" id="btnJsp" onclick="toggleJsp()">Je ne sais pas &#x1F937;&#x200D;&#x2640;&#xFE0F;</button>
         </div>
       </div>
 
-      <!-- Date -->
       <div class="field">
-        <label for="date">Quelle date te convient ? <span class="required">*</span></label>
-        <input type="date" id="date" name="date" required />
-        <div class="error-msg" id="dateError">Merci de choisir une date 🙏</div>
+        <label>ina nahr ? <span class="req">*</span></label>
+        <input type="date" id="date" name="date" />
+        <div class="error" id="dateError">Darori tkhtari une date.</div>
       </div>
 
-      <!-- Réponse cachée -->
-      <input type="hidden" id="reponse" name="reponse" value="" />
+      <input type="hidden" id="reponse" name="reponse" />
 
-      <hr class="divider"/>
+      <hr />
 
       <div class="actions">
-        <button type="button" class="btn-primary" onclick="submitForm('Oui 😊')">Oui, avec plaisir 😊</button>
-        <button type="button" class="btn-maybe" onclick="submitForm('Peut-être 😄')">Peut-être… 😄</button>
-        <button type="button" class="btn-decline" onclick="submitForm('Pas intéressée')">Je ne suis pas intéressée</button>
+        <button type="button" class="btn-oui" onclick="envoyer('Oui')">Oui, avec plaisir</button>
+        <button type="button" class="btn-peut" onclick="envoyer('Peut-etre')">Ma3reftch</button>
+        <button type="button" class="btn-non" onclick="envoyer('Pas interessee')">Mabghitch </button>
       </div>
 
     </form>
   </div>
 
-  <!-- THANK YOU SECTION -->
-  <div class="thankyou" id="thankyouSection">
-    <div class="icon" id="tyIcon">🌿</div>
-    <h2 id="tyTitle">Merci !</h2>
-    <p id="tyText">Ta réponse a bien été envoyée.<br>À très bientôt.</p>
+  <div class="merci" id="merciSection">
+    <div class="merci-accent"></div>
+    <h2 id="merciTitre">Merci.</h2>
+    <p id="merciTexte">Ta reponse a bien ete recue.<br>A tres bientot.</p>
   </div>
 
 </div>
 
 <script>
-  function setSavoirPas() {
-    const btn = document.getElementById('btn-jsp');
-    const input = document.getElementById('lieu');
+  document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+  function toggleJsp() {
+    var btn = document.getElementById('btnJsp');
+    var input = document.getElementById('lieu');
     if (btn.classList.contains('active')) {
       btn.classList.remove('active');
       input.value = '';
@@ -348,64 +308,44 @@
     }
   }
 
-  function submitForm(reponseValue) {
-    const date = document.getElementById('date').value;
-    const dateError = document.getElementById('dateError');
-
+  function envoyer(rep) {
+    var date = document.getElementById('date').value;
+    var erreur = document.getElementById('dateError');
     if (!date) {
-      dateError.style.display = 'block';
+      erreur.style.display = 'block';
       document.getElementById('date').focus();
       return;
     }
-
-    dateError.style.display = 'none';
-    document.getElementById('reponse').value = reponseValue;
-
-    const form = document.getElementById('inviteForm');
-    const data = new FormData(form);
-
+    erreur.style.display = 'none';
+    document.getElementById('reponse').value = rep;
+    var form = document.getElementById('inviteForm');
     fetch(form.action, {
       method: 'POST',
-      body: data,
+      body: new FormData(form),
       headers: { 'Accept': 'application/json' }
-    }).then(res => {
-      showThankyou(reponseValue);
-    }).catch(() => {
-      showThankyou(reponseValue); // show anyway
-    });
+    }).finally(function() { afficherMerci(rep); });
   }
 
-  function showThankyou(reponse) {
-    document.getElementById('formSection').style.opacity = '0';
-    setTimeout(() => {
-      document.getElementById('formSection').style.display = 'none';
-      const ty = document.getElementById('thankyouSection');
-      const icon = document.getElementById('tyIcon');
-      const title = document.getElementById('tyTitle');
-      const text = document.getElementById('tyText');
-
-      if (reponse === 'Oui 😊') {
-        icon.textContent = '🌸';
-        title.textContent = 'Super !';
-        text.innerHTML = 'Je suis ravi(e) de ta réponse.<br>On se retrouve très bientôt !';
-      } else if (reponse === 'Peut-être 😄') {
-        icon.textContent = '🌿';
-        title.textContent = "D'accord !";
-        text.innerHTML = 'Pas de pression.<br>On en reparlera bientôt.';
+  function afficherMerci(rep) {
+    var body = document.getElementById('formBody');
+    body.style.opacity = '0';
+    setTimeout(function() {
+      body.style.display = 'none';
+      var titre = document.getElementById('merciTitre');
+      var texte = document.getElementById('merciTexte');
+      if (rep === 'Oui') {
+        titre.textContent = 'Super.';
+        texte.innerHTML = 'Je suis ravi de ta reponse.<br>On se retrouve tres bientot.';
+      } else if (rep === 'Peut-etre') {
+        titre.textContent = "D'accord.";
+        texte.innerHTML = 'Pas de pression.<br>On en reparlera bientot.';
       } else {
-        icon.textContent = '🍃';
-        title.textContent = 'Compris.';
-        text.innerHTML = 'Merci pour ta réponse.<br>Bonne continuation !';
+        titre.textContent = 'Compris.';
+        texte.innerHTML = 'Merci pour ta reponse.';
       }
-
-      ty.style.display = 'block';
-    }, 400);
+      document.getElementById('merciSection').style.display = 'block';
+    }, 350);
   }
-
-  // Set min date to today
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('date').min = today;
 </script>
-
 </body>
 </html>
